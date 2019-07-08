@@ -13,4 +13,7 @@ public interface DepNewsDao {
 
     //Update department news
     void updateDepNews(int id, String title, String content, String importance);
+
+    //Get all department news by department id
+    List<DepNews> getAllDepNews(int departmentId);
 }

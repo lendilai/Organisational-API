@@ -52,6 +52,16 @@ public class SqlDepNewsDao implements DepNewsDao {
         }
     }
 
+    @Override
+    public List<DepNews> getAllDepNews(int departmentId){
+        String sql = "SELECT * FROM news WHERE departmentId =:departmentId";
+        try(Connection conn = sql2o.open()){
+            return conn.createQuery(sql).addParameter("departmentId", departmentId)
+                    .throwOnMappingFailure(false)
+                    .executeAndFetch(DepNews.class);
+        }
+    }
+
     public void clearAll(){
         String sql = "DELETE from news WHERE type = 'Department news'";
         try(Connection conn = sql2o.open()){
