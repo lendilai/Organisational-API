@@ -6,6 +6,7 @@ public class Users {
     private String name;
     private String position;
     private int departmentId;
+    private int id;
 
     public Users(String name, String position, int departmentId){
         this.name = name;
@@ -18,14 +19,15 @@ public class Users {
         if (this == o) return true;
         if (!(o instanceof Users)) return false;
         Users users = (Users) o;
-        return departmentId == users.departmentId &&
-                name.equals(users.name) &&
-                position.equals(users.position);
+        return getDepartmentId() == users.getDepartmentId() &&
+                getId() == users.getId() &&
+                getName().equals(users.getName()) &&
+                getPosition().equals(users.getPosition());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, position, departmentId);
+        return Objects.hash(getName(), getPosition(), getDepartmentId(), getId());
     }
 
     public String getName() {
@@ -38,5 +40,13 @@ public class Users {
 
     public int getDepartmentId() {
         return departmentId;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
