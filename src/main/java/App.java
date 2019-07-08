@@ -3,8 +3,11 @@ import dao.SqlDepartmentsDao;
 import dao.SqlGenNewsDao;
 import dao.SqlUserDao;
 import models.Departments;
+import models.GenNews;
 import org.sql2o.Sql2o;
 import com.google.gson.Gson;
+import spark.Request;
+
 import static spark.Spark.*;
 
 public class App {
@@ -23,15 +26,34 @@ public class App {
         userDao = new SqlUserDao(sql2o);
         Gson gson = new Gson();
 
-        post("/departments/new", "application/json", (request, response) -> {
-            Departments departments = gson.fromJson(request.body(), Departments.class); //Make a java object from json using Gson
-            departmentsDao.add(departments);
-            response.status(201); //Success: request received and resource created
-            return gson.toJson(departments);
+        //post: Add general news
+        post("/generalNews/new", "application/json", (request, response) -> {
+            GenNews genNews = gson.fromJson(request.body(), GenNews.class);
+            genNewsDao.add(genNews);
+            response.status(201);
+            return gson.toJson(genNews);
         });
 
+        //Get: View all general news
+        get("/generalNews", "application/json", (request, response) -> {
+            return gson.toJson(genNewsDao.getAllGenNews());
+        });
+
+        //post: Add a department
+        //Get: View all departments
+
+        //Get: View all news for a department
+        //post: Add news to a department
+        //Get: View all users in a department
+        //post: Add a user to a department
+        //Get: View all users
+        //post: Add a user
+        //post: Add a department to a user
+        //Get: View all departments a user belongs to
+
+        //Filter for the response type
         after((request, response) -> {
-            response.type("application/json");
+           response.type("application/json");
         });
     }
 }
