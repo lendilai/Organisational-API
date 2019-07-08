@@ -1,4 +1,5 @@
 package dao;
+import models.DepNews;
 import models.Users;
 import org.h2.engine.User;
 import org.sql2o.Sql2o;
@@ -44,6 +45,14 @@ public class SqlDepartmentsDao implements DepartmentsDao {
         String sql = "SELECT * FROM departments";
         try(Connection conn = sql2o.open()){
             return conn.createQuery(sql).executeAndFetch(Departments.class);
+        }
+    }
+
+    @Override
+    public List<DepNews> getAllDepartmentNews(int departmentId){
+        String sql = "SELECT * FROM news WHERE departmentId =:departmentId";
+        try(Connection conn = sql2o.open()){
+            return conn.createQuery(sql).addParameter("departmentId", departmentId).throwOnMappingFailure(false).executeAndFetch(DepNews.class);
         }
     }
 

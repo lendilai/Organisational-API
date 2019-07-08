@@ -1,5 +1,6 @@
 package dao;
 
+import models.DepNews;
 import models.Departments;
 import models.Users;
 import org.junit.After;
@@ -13,13 +14,13 @@ import static org.junit.Assert.*;
 public class SqlDepartmentsDaoTest {
     private Connection conn;
     private SqlDepartmentsDao sqlDepartmentsDao;
-    private SqlUserDao sqlUserDao;
+    private SqlDepNewsDao sqlDepNewsDao;
 
     @Before
     public void setUp() throws Exception {
         String connectionString = "jdbc:h2:mem:testing;INIT=RUNSCRIPT from 'classpath:db/create.sql'";
         Sql2o sql2o = new Sql2o(connectionString, "", "");
-        sqlUserDao = new SqlUserDao(sql2o);
+        sqlDepNewsDao = new SqlDepNewsDao(sql2o);
         sqlDepartmentsDao = new SqlDepartmentsDao(sql2o);
         conn = sql2o.open();
     }
@@ -61,4 +62,14 @@ public class SqlDepartmentsDaoTest {
         assertEquals(2, sqlDepartmentsDao.getAll().size());
     }
 
+    @Test
+    public void getsAllNewsForADepartment() {
+        Departments first = setUpDep();
+        DepNews news = new DepNews("Holiday", "Holiday on Thursday", "Very important", first.getId());
+        DepNews nextNews = new DepNews("Nothing", "Holiday on Thursday", "Very important", first.getId());
+        sqlDepNewsDao.add(news);
+        sqlDepNewsDao.add(nextNews);
+        assertEquals(2, sqlDepartmentsDao.getAllDepartmentNews(first.getId()).size());
+        assertEquals("Nothing", sqlDepartmentsDao.getAllDepartmentNews(first.getId()).get(1).getTitle());
+    }
 }

@@ -1,5 +1,6 @@
 package dao;
 
+import models.DepNews;
 import models.Departments;
 import models.Users;
 
@@ -15,4 +16,5 @@ public interface DepartmentsDao {
     //Get all departments
     List<Departments> getAll();
 
+    List<DepNews> getAllDepartmentNews(int departmentId);
 }

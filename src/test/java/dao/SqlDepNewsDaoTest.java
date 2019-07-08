@@ -38,4 +38,12 @@ public class SqlDepNewsDaoTest {
         int theId = news.getId();
         assertEquals(theId, news.getId());
     }
+
+    @Test
+    public void findsNewsById() {
+        DepNews news = setUpNews();
+        sqlDepNewsDao.add(news);
+        DepNews found = sqlDepNewsDao.findById(news.getId());
+        assertEquals(news, found);
+    }
 }
