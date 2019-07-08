@@ -6,7 +6,7 @@ This is an api that primarily offers access to news to a department and general 
 
 ## Features
 * Add general as well as departmental news.
-*Add a department.
+* Add a department.
 * Add a user to a department.
 
 
@@ -22,7 +22,7 @@ This is an api that primarily offers access to news to a department and general 
 | Retrieve all departments a user belongs to | Make a get request on `users/1/departments` where '1' is the user id | All departments that a user belongs to are displayed |
 
 
-##Database Setup
+## Database Setup
 ### Installation
 1. Clone the repo `https://github.com/lendilai/Organisational-API.git`
 2. CD into the folder `cd api_dev`

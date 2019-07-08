@@ -14,13 +14,25 @@ import static spark.Spark.*;
 
 public class App {
     public static void main(String[] args) {
+        ProcessBuilder process = new ProcessBuilder();
+        Integer port;
+
+        if (process.environment().get("PORT") != null) {
+            port = Integer.parseInt(process.environment().get("PORT"));
+        }else {
+            port = 4567;
+        }
+        port(port);
+
         SqlDepartmentsDao departmentsDao;
         SqlDepNewsDao depNewsDao;
         SqlGenNewsDao genNewsDao;
         SqlUserDao userDao;
 
-        String connectIt = "jdbc:postgresql://localhost:5432/api_dev";
-        Sql2o sql2o = new Sql2o(connectIt, "rlgriff", "547");
+//        String connectIt = "jdbc:postgresql://localhost:5432/api_dev";
+//        Sql2o sql2o = new Sql2o(connectIt, "rlgriff", "547");
+        String connectionString = "jdbc:postgresql://ec2-107-22-211-248.compute-1.amazonaws.com:5432/dfdutmjkvs127d";
+        Sql2o sql2o = new Sql2o(connectionString, "gwpuliyjmrbmrp", "c35fb50574fbe545785a3a02849d27217ff062ef9642a55c0677d7ba6d42fb90");
 
         departmentsDao = new SqlDepartmentsDao(sql2o);
         depNewsDao = new SqlDepNewsDao(sql2o);
