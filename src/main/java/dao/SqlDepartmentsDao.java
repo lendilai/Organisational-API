@@ -7,6 +7,7 @@ import org.sql2o.Connection;
 import org.sql2o.Sql2oException;
 import models.Departments;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SqlDepartmentsDao implements DepartmentsDao {
@@ -54,6 +55,39 @@ public class SqlDepartmentsDao implements DepartmentsDao {
         try(Connection conn = sql2o.open()){
             return conn.createQuery(sql).addParameter("departmentId", departmentId).throwOnMappingFailure(false).executeAndFetch(DepNews.class);
         }
+    }
+
+    @Override
+    public void addDepartmentToUser(Departments department, Users user){
+        String sql = "INSERT INTO departments_users(department_id, user_id) VALUES (:department_id, :user_id)";
+        try(Connection conn = sql2o.open()){
+            conn.createQuery(sql)
+                    .addParameter("department_id", department.getId())
+                    .addParameter("user_id", user.getId())
+                    .executeUpdate();
+        }catch (Sql2oException ex){
+            System.out.println(ex);
+        }
+    }
+
+    @Override
+    public List<Users> getAllUsersForADepartment(int department_id){
+        ArrayList<Users> allUsers = new ArrayList<>();
+        String matchToGetTheUserIds = "SELECT user_id FROM departments_users WHERE department_id =:department_id";
+        try(Connection conn = sql2o.open()){
+            List<Integer> allUserIds = conn.createQuery(matchToGetTheUserIds)
+                    .addParameter("department_id", department_id)
+                    .executeAndFetch(Integer.class);
+            for(Integer user_id : allUserIds){
+                String getFromUsers = "SELECT * FROM users WHERE id =:user_id";
+                allUsers.add(conn.createQuery(getFromUsers)
+                .addParameter("user_id", user_id)
+                .executeAndFetchFirst(Users.class));
+            }
+        }catch (Sql2oException ex){
+            System.out.println(ex);
+        }
+        return allUsers;
     }
 
     public void clearAll(){

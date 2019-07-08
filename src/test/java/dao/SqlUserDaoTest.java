@@ -1,5 +1,6 @@
 package dao;
 
+import models.Departments;
 import models.Users;
 import org.junit.After;
 import org.junit.Before;
@@ -7,17 +8,22 @@ import org.junit.Test;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
 import static org.junit.Assert.*;
 
 public class SqlUserDaoTest {
     private Connection conn;
     private SqlUserDao sqlUserDao;
+    private SqlDepartmentsDao sqlDepartmentsDao;
 
     @Before
     public void setUp() throws Exception {
         String connectionString = "jdbc:h2:mem:testing;INIT=RUNSCRIPT from 'classpath:db/create.sql'";
         Sql2o sql2o = new Sql2o(connectionString, "", "");
         sqlUserDao = new SqlUserDao(sql2o);
+        sqlDepartmentsDao = new SqlDepartmentsDao(sql2o);
         conn = sql2o.open();
     }
 
@@ -53,5 +59,19 @@ public class SqlUserDaoTest {
         sqlUserDao.add(newUser);
         sqlUserDao.add(second);
         assertEquals(2, sqlUserDao.getAllUsers().size());
+    }
+
+    @Test
+    public void retrievesCorrectDepartmentsForAUser() throws Exception{
+        Users firstUser = setUpUser();
+        sqlUserDao.add(firstUser);
+        Departments first = new Departments("Marketing", "Sell products", 45);
+        Departments second = new Departments("Sales", "Too much work", 21);
+        sqlDepartmentsDao.add(first);
+        sqlDepartmentsDao.add(second);
+        sqlUserDao.addUserToDepartment(firstUser, first);
+        sqlUserDao.addUserToDepartment(firstUser, second);
+        Departments[] departments = {first, second};
+        assertEquals(Arrays.asList(departments), sqlUserDao.getAllDepartmentsForAUser(firstUser.getId()));
     }
 }

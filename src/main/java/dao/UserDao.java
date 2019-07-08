@@ -1,5 +1,6 @@
 package dao;
 
+import models.Departments;
 import models.Users;
 
 import java.util.List;
@@ -13,4 +14,11 @@ public interface UserDao {
 
     //Get all users
     List<Users> getAllUsers();
+
+    //Add a user to a department
+    void addUserToDepartment(Users user, Departments department);
+
+    //Get all departments a user belongs to
+    List<Departments> getAllDepartmentsForAUser(int user_id);
+
 }

@@ -16,5 +16,12 @@ public interface DepartmentsDao {
     //Get all departments
     List<Departments> getAll();
 
+    //Get all news for a department
     List<DepNews> getAllDepartmentNews(int departmentId);
+
+    //Add a department to a user
+    void addDepartmentToUser(Departments department, Users user);
+
+    //Get all users in a particular department
+    List<Users> getAllUsersForADepartment(int department_id);
 }
