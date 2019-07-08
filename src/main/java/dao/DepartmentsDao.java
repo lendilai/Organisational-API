@@ -15,6 +15,6 @@ public interface DepartmentsDao {
     //Get all departments
     List<Departments> getAll();
 
-//    //Get all users in a department
-//    List<Users> getAllUsersByDepartment(int departmentId);
+    //Get all users in a department
+    List<Users> getAllUsersByDepartment(int departmentId);
 }

@@ -1,6 +1,7 @@
 package dao;
 
 import models.Departments;
+import models.Users;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,11 +13,13 @@ import static org.junit.Assert.*;
 public class SqlDepartmentsDaoTest {
     private Connection conn;
     private SqlDepartmentsDao sqlDepartmentsDao;
+    private SqlUserDao sqlUserDao;
 
     @Before
     public void setUp() throws Exception {
         String connectionString = "jdbc:h2:mem:testing;INIT=RUNSCRIPT from 'classpath:db/create.sql'";
         Sql2o sql2o = new Sql2o(connectionString, "", "");
+        sqlUserDao = new SqlUserDao(sql2o);
         sqlDepartmentsDao = new SqlDepartmentsDao(sql2o);
         conn = sql2o.open();
     }
@@ -56,5 +59,14 @@ public class SqlDepartmentsDaoTest {
         sqlDepartmentsDao.add(newDep);
         sqlDepartmentsDao.add(second);
         assertEquals(2, sqlDepartmentsDao.getAll().size());
+    }
+
+    @Test
+    public void getsUserByDepartment() {
+        Users newUser = new Users("John Doe", "CTO", 3);
+        sqlUserDao.add(newUser);
+        Departments newDepartment = setUpDep();
+        sqlDepartmentsDao.add(newDepartment);
+        assertEquals(newUser, sqlDepartmentsDao.getAllUsersByDepartment(3).get(0));
     }
 }
