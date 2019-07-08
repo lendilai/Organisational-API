@@ -1,5 +1,6 @@
 package dao;
 
+import com.sun.tools.javac.jvm.Gen;
 import models.GenNews;
 import org.junit.After;
 import org.junit.Before;
@@ -40,5 +41,24 @@ public class SqlGenNewsDaoTest {
         sqlGenNewsDao.add(nextNews);
         int theId = nextNews.getId();
         assertEquals(theId, nextNews.getId());
+    }
+
+    @Test
+    public void getsAllGeneralNewsAdded() {
+        GenNews news = setUpGenNews();
+        GenNews nextNews = setUpGenNews();
+        sqlGenNewsDao.add(news);
+        sqlGenNewsDao.add(nextNews);
+        assertEquals(2, sqlGenNewsDao.getAllGenNews().size());
+    }
+
+    @Test
+    public void findsById() {
+        GenNews news = setUpGenNews();
+        GenNews nextNews = setUpGenNews();
+        sqlGenNewsDao.add(news);
+        sqlGenNewsDao.add(nextNews);
+        int theId = nextNews.getId();
+        assertEquals(nextNews, sqlGenNewsDao.findById(theId));
     }
 }
