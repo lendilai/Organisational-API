@@ -1,11 +1,14 @@
 plugins {
     id 'java'
+    id 'application'
 }
 
 group 'com.nathan.apiProjo'
 version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
+applicationName = "Organisational-Api"
+mainClassName = "App"
 
 repositories {
     mavenCentral()
@@ -17,5 +20,8 @@ dependencies {
     compile "com.sparkjava:spark-template-handlebars:2.5.5"
     compile 'org.slf4j:slf4j-simple:1.7.21'
     compile 'org.sql2o:sql2o:1.5.4'
-    compile group: 'com.h2database', name: 'h2', version: '1.4.191'
+    compile 'com.google.code.gson:gson:2.5'
+    compile group: 'org.postgresql', name: 'postgresql', version: '42.2.2'
 }
+defaultTasks = ['clean']
+task stage(dependsOn: ['clean', 'installDist'])

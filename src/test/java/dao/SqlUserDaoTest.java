@@ -2,9 +2,7 @@ package dao;
 
 import models.Departments;
 import models.Users;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
@@ -14,14 +12,14 @@ import java.util.Arrays;
 import static org.junit.Assert.*;
 
 public class SqlUserDaoTest {
-    private Connection conn;
-    private SqlUserDao sqlUserDao;
-    private SqlDepartmentsDao sqlDepartmentsDao;
+    private static Connection conn;
+    private static SqlUserDao sqlUserDao;
+    private static SqlDepartmentsDao sqlDepartmentsDao;
 
-    @Before
-    public void setUp() throws Exception {
-        String connectionString = "jdbc:h2:mem:testing;INIT=RUNSCRIPT from 'classpath:db/create.sql'";
-        Sql2o sql2o = new Sql2o(connectionString, "", "");
+    @BeforeClass
+    public static void setUp() throws Exception {
+        String connectionString = "jdbc:postgresql://localhost:5432/api_dev_test";
+        Sql2o sql2o = new Sql2o(connectionString, "rlgriff", "547");
         sqlUserDao = new SqlUserDao(sql2o);
         sqlDepartmentsDao = new SqlDepartmentsDao(sql2o);
         conn = sql2o.open();
@@ -29,7 +27,14 @@ public class SqlUserDaoTest {
 
     @After
     public void tearDown() throws Exception {
+        System.out.println("Clearing database");
+        sqlUserDao.clearAll();
+    }
+
+    @AfterClass
+    public static void shutDown() throws Exception {
         conn.close();
+        System.out.println("Connection closed");
     }
 
     public Users setUpUser(){

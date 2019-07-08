@@ -47,6 +47,15 @@ public class SqlUserDao implements UserDao {
         }
     }
 
+    public void clearAll(){
+         String sql = "DELETE from users";
+         try(Connection conn = sql2o.open()){
+             conn.createQuery(sql).executeUpdate();
+         }catch (Sql2oException ex){
+             System.out.println(ex);
+         }
+    }
+
     @Override
     public void addUserToDepartment(Users user, Departments department){
         String sql = "INSERT INTO departments_users(department_id, user_id) VALUES (:department_id, :user_id)";

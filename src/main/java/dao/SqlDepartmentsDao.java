@@ -1,7 +1,6 @@
 package dao;
 import models.DepNews;
 import models.Users;
-import org.h2.engine.User;
 import org.sql2o.Sql2o;
 import org.sql2o.Connection;
 import org.sql2o.Sql2oException;
