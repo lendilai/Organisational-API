@@ -37,4 +37,21 @@ public class SqlUserDaoTest {
         int theId = newUser.getId();
         assertEquals(theId, newUser.getId());
     }
+
+    @Test
+    public void getsAUserById() {
+        Users newUser = setUpUser();
+        sqlUserDao.add(newUser);
+        Users found = sqlUserDao.findById(newUser.getId());
+        assertEquals(newUser, found);
+    }
+
+    @Test
+    public void getsAllUsersAdded() {
+        Users newUser = setUpUser();
+        Users second = setUpUser();
+        sqlUserDao.add(newUser);
+        sqlUserDao.add(second);
+        assertEquals(2, sqlUserDao.getAllUsers().size());
+    }
 }
