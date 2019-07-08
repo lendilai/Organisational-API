@@ -61,4 +61,16 @@ public class SqlGenNewsDaoTest {
         int theId = nextNews.getId();
         assertEquals(nextNews, sqlGenNewsDao.findById(theId));
     }
+//
+//    @Test
+//    public void updatesGeneralNewsInAllFields() throws Exception{
+//        GenNews news = setUpGenNews();
+//        GenNews nextNews = setUpGenNews();
+//        sqlGenNewsDao.add(nextNews);
+//        sqlGenNewsDao.updateNews(nextNews.getId(), "No-Holiday", "The holiday on Thursday has been nullified", "Very important");
+//        System.out.println(nextNews.getId());
+//        sqlGenNewsDao.add(nextNews);
+//        GenNews found = sqlGenNewsDao.findById(news.getId());
+//        assertEquals("No-Holiday", found.getTitle());
+//    }
 }
