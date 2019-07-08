@@ -6,6 +6,7 @@ public class Departments {
     private String name;
     private String description;
     private int userNo;
+    private int id;
     private final int MAX_USER_NO_PER_DEP = 100;
 
     public Departments(String name, String description, int userNo){
@@ -40,6 +41,14 @@ public class Departments {
 
     public int getUserNo() {
         return userNo;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getMAX_USER_NO_PER_DEP() {
