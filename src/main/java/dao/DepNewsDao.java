@@ -10,4 +10,7 @@ public interface DepNewsDao {
 
     //Find news by the id
     DepNews findById(int id);
+
+    //Update department news
+    void updateDepNews(int id, String title, String content, String importance);
 }

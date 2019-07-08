@@ -79,8 +79,8 @@ public class SqlDepartmentsDaoTest {
 
     @Test
     public void getsAllUsersInADepartment() throws Exception{
-        Users first = new Users("John Doe", "Intern");
-        Users second = new Users("Lendilai", "Owner");
+        Users first = new Users("John Doe", "Intern", "http://duxhg.com");
+        Users second = new Users("Lendilai", "Owner", "http://duxhg.com");
         sqlUserDao.add(first);
         sqlUserDao.add(second);
         Departments newDepartment = setUpDep();

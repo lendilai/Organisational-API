@@ -13,7 +13,7 @@ public interface GenNewsDao {
 
     //Get all general news
     List<GenNews> getAllGenNews();
-//
-////    Update the news
-//    void updateNews(int id, String title, String content, String importance);
+
+//    Update the news
+    void updateNews(int id, String title, String content, String importance);
 }

@@ -28,6 +28,7 @@ public class SqlDepNewsDaoTest {
 
     @After
     public void tearDown() throws Exception {
+        sqlDepNewsDao.clearAll();
         conn.close();
     }
 
@@ -45,5 +46,14 @@ public class SqlDepNewsDaoTest {
         sqlDepNewsDao.add(news);
         DepNews found = sqlDepNewsDao.findById(news.getId());
         assertEquals(news, found);
+    }
+
+    @Test
+    public void updatesDepartmentNewsCorrectly() throws Exception{
+        DepNews depNews = setUpNews();
+        sqlDepNewsDao.add(depNews);
+        sqlDepNewsDao.updateDepNews(depNews.getId(), "No-holiday", "Noooooo", "Mild importance");
+        DepNews found = sqlDepNewsDao.findById(depNews.getId());
+        assertEquals("Noooooo", found.getContent());
     }
 }

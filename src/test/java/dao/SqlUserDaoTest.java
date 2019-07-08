@@ -33,7 +33,7 @@ public class SqlUserDaoTest {
     }
 
     public Users setUpUser(){
-        return new Users("John Doe", "CTO");
+        return new Users("John Doe", "CTO", "http://duxhg.com");
     }
 
     @Test

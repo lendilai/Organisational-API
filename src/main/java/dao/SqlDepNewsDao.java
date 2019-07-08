@@ -37,4 +37,29 @@ public class SqlDepNewsDao implements DepNewsDao {
         }
     }
 
+    @Override
+    public void updateDepNews(int id, String newTitle, String newContent, String newImportance){
+        String sql = "UPDATE news SET (title, content, importance) = (:title, :content, :importance) WHERE id =:id";
+        try(Connection conn = sql2o.open()){
+            conn.createQuery(sql)
+                    .addParameter("title", newTitle)
+                    .addParameter("content", newContent)
+                    .addParameter("importance", newImportance)
+                    .addParameter("id", id)
+                    .executeUpdate();
+        }catch (Sql2oException ex){
+            System.out.println(ex);
+        }
+    }
+
+    public void clearAll(){
+        String sql = "DELETE from news WHERE type = 'Department news'";
+        try(Connection conn = sql2o.open()){
+            conn.createQuery(sql)
+                    .executeUpdate();
+        }catch (Sql2oException ex){
+            System.out.println(ex);
+        }
+    }
+
 }
