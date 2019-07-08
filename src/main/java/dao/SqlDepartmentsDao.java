@@ -47,14 +47,6 @@ public class SqlDepartmentsDao implements DepartmentsDao {
         }
     }
 
-    @Override
-    public List<Users> getAllUsersByDepartment(int departmentId){
-        String sql = "SELECT * FROM users WHERE departmentId =:departmentId";
-        try(Connection conn = sql2o.open()){
-            return conn.createQuery(sql).addParameter("departmentId", departmentId).executeAndFetch(Users.class);
-        }
-    }
-
     public void clearAll(){
         String sql = "DELETE from departments";
         try(Connection conn = sql2o.open()){

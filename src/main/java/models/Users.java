@@ -5,13 +5,11 @@ import java.util.Objects;
 public class Users {
     private String name;
     private String position;
-    private int departmentId;
     private int id;
 
-    public Users(String name, String position, int departmentId){
+    public Users(String name, String position){
         this.name = name;
         this.position = position;
-        this.departmentId = departmentId;
     }
 
     @Override
@@ -19,15 +17,14 @@ public class Users {
         if (this == o) return true;
         if (!(o instanceof Users)) return false;
         Users users = (Users) o;
-        return getDepartmentId() == users.getDepartmentId() &&
-                getId() == users.getId() &&
+        return getId() == users.getId() &&
                 getName().equals(users.getName()) &&
                 getPosition().equals(users.getPosition());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getName(), getPosition(), getDepartmentId(), getId());
+        return Objects.hash(getName(), getPosition(), getId());
     }
 
     public String getName() {
@@ -36,10 +33,6 @@ public class Users {
 
     public String getPosition() {
         return position;
-    }
-
-    public int getDepartmentId() {
-        return departmentId;
     }
 
     public int getId() {

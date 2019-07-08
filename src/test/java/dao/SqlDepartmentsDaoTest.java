@@ -61,12 +61,4 @@ public class SqlDepartmentsDaoTest {
         assertEquals(2, sqlDepartmentsDao.getAll().size());
     }
 
-    @Test
-    public void getsUserByDepartment() {
-        Users newUser = new Users("John Doe", "CTO", 3);
-        sqlUserDao.add(newUser);
-        Departments newDepartment = setUpDep();
-        sqlDepartmentsDao.add(newDepartment);
-        assertEquals(newUser, sqlDepartmentsDao.getAllUsersByDepartment(3).get(0));
-    }
 }

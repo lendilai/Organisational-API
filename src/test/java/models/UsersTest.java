@@ -8,15 +8,14 @@ public class UsersTest {
 
     @Test
     public void User_instantiatesCorrectly() {
-        Users newUser = new Users("John Doe", "CTO", 3);
+        Users newUser = new Users("John Doe", "CTO");
         assertTrue(newUser instanceof Users);
     }
 
     @Test
     public void User_instantiatesWithCorrectValues() {
-        Users newUser = new Users("John Doe", "CTO", 3);
+        Users newUser = new Users("John Doe", "CTO");
         assertEquals("John Doe", newUser.getName());
         assertEquals("CTO", newUser.getPosition());
-        assertEquals(3, newUser.getDepartmentId());
     }
 }

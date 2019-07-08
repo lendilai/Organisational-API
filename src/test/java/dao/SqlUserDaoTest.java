@@ -27,7 +27,7 @@ public class SqlUserDaoTest {
     }
 
     public Users setUpUser(){
-        return new Users("John Doe", "CTO", 3);
+        return new Users("John Doe", "CTO");
     }
 
     @Test
