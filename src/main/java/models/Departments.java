@@ -5,14 +5,14 @@ import java.util.Objects;
 public class Departments {
     private String name;
     private String description;
-    private int userNo;
+    private int user_no;
     private int id;
     private final int MAX_USER_NO_PER_DEP = 100;
 
-    public Departments(String name, String description, int userNo){
+    public Departments(String name, String description, int user_no){
         this.name = name;
         this.description = description;
-        this.userNo = userNo;
+        this.user_no = user_no;
     }
 
     @Override
@@ -20,7 +20,8 @@ public class Departments {
         if (this == o) return true;
         if (!(o instanceof Departments)) return false;
         Departments that = (Departments) o;
-        return getUserNo() == that.getUserNo() &&
+        return getUser_no() == that.getUser_no() &&
+                getId() == that.getId() &&
                 getMAX_USER_NO_PER_DEP() == that.getMAX_USER_NO_PER_DEP() &&
                 getName().equals(that.getName()) &&
                 getDescription().equals(that.getDescription());
@@ -28,7 +29,7 @@ public class Departments {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getName(), getDescription(), getUserNo(), getMAX_USER_NO_PER_DEP());
+        return Objects.hash(getName(), getDescription(), getUser_no(), getId(), getMAX_USER_NO_PER_DEP());
     }
 
     public String getName() {
@@ -39,8 +40,8 @@ public class Departments {
         return description;
     }
 
-    public int getUserNo() {
-        return userNo;
+    public int getUser_no() {
+        return user_no;
     }
 
     public int getId() {

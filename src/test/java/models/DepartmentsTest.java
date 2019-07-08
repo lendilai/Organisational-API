@@ -17,7 +17,7 @@ public class DepartmentsTest {
         Departments newDep = new Departments("Marketing", "Gain investors", 16);
         assertEquals("Marketing", newDep.getName());
         assertEquals("Gain investors", newDep.getDescription());
-        assertEquals(16, newDep.getUserNo());
+        assertEquals(16, newDep.getUser_no());
         assertEquals(100, newDep.getMAX_USER_NO_PER_DEP());
     }
 }

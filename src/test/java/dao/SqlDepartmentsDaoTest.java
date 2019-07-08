@@ -23,14 +23,38 @@ public class SqlDepartmentsDaoTest {
 
     @After
     public void tearDown() throws Exception {
+        sqlDepartmentsDao.clearAll();
         conn.close();
+    }
+
+    public Departments setUpDep(){
+        return new Departments("Marketing", "Gain investors", 16);
     }
 
     @Test
     public void addsDepartmentsToTheDBAndSetsId() throws Exception{
-        Departments newDep = new Departments("Marketing", "Gain investors", 16);
+        Departments newDep = setUpDep();
         sqlDepartmentsDao.add(newDep);
         int theId = newDep.getId();
         assertEquals(theId, newDep.getId());
+    }
+
+    @Test
+    public void findsDepartmentById() {
+        Departments newDep = setUpDep();
+        Departments second = setUpDep();
+        sqlDepartmentsDao.add(newDep);
+        sqlDepartmentsDao.add(second);
+        Departments found = sqlDepartmentsDao.findById(newDep.getId());
+        assertEquals(found.getDescription(), newDep.getDescription());
+    }
+
+    @Test
+    public void getsAllDepartments() {
+        Departments newDep = setUpDep();
+        Departments second = setUpDep();
+        sqlDepartmentsDao.add(newDep);
+        sqlDepartmentsDao.add(second);
+        assertEquals(2, sqlDepartmentsDao.getAll().size());
     }
 }

@@ -9,12 +9,12 @@ public interface DepartmentsDao {
     //Add department
     void add(Departments departments);
 
-//    //Find by id
-//    Departments findById(int id);
-//
-//    //Get all departments
-//    List<Departments> getAll();
-//
+    //Find by id
+    Departments findById(int id);
+
+    //Get all departments
+    List<Departments> getAll();
+
 //    //Get all users in a department
 //    List<Users> getAllUsersByDepartment(int departmentId);
 }
