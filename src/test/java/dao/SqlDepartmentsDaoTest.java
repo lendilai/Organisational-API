@@ -31,6 +31,7 @@ public class SqlDepartmentsDaoTest {
     public void tearDown() throws Exception{
         System.out.println("Clearing Database");
         sqlDepartmentsDao.clearAll();
+        sqlDepNewsDao.clearAll();
     }
 
     @AfterClass
