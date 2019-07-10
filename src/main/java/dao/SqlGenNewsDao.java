@@ -27,7 +27,7 @@ public class SqlGenNewsDao implements GenNewsDao{
 
     @Override
     public List<GenNews> getAllGenNews(){
-        String sql = "SELECT * FROM news WHERE type = 'General news'";
+        String sql = "SELECT * FROM news WHERE type = 'General news' ORDER BY id DESC";
         try(Connection conn = sql2o.open()){
             return conn.createQuery(sql).throwOnMappingFailure(false).executeAndFetch(GenNews.class);
         }

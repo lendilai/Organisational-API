@@ -12,16 +12,16 @@
                 {{/if}}
                     <div class="col-lg-6 the-details">
                         {{#if userDetails}}
-                        <h1 class="the-user-detail text-center">{{name}}</h1>
+                        <h1 class="the-user-detail text-center">{{userDetails.name}}</h1>
                         <hr id="user-name"><br>
-                        <p class="text-center">Positions : {{position}}</p><br>
+                        <p class="text-center">Positions : {{userDetails.position}}</p><br>
                         {{/if}}
                         <div class="users-deps">
                             <h4 class="text-center">Departments</h4>
                             <hr id="user-name">
                             {{#if userDeps}}
-                            {{#each useDdeps}}
-                                <p class="text-center"></p>
+                            {{#each userDeps}}
+                                <p class="text-center">{{name}}</p>
                             {{/each}}
                                 {{else}}
                                 <p class="text-center">No departments available</p>

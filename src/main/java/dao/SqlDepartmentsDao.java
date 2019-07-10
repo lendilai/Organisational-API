@@ -42,7 +42,7 @@ public class SqlDepartmentsDao implements DepartmentsDao {
 
     @Override
     public List<Departments> getAll(){
-        String sql = "SELECT * FROM departments";
+        String sql = "SELECT * FROM departments ORDER BY name ASC";
         try(Connection conn = sql2o.open()){
             return conn.createQuery(sql).executeAndFetch(Departments.class);
         }

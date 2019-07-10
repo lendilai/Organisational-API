@@ -33,7 +33,7 @@ public class SqlUserDao implements UserDao {
 
     @Override
     public List<Users> getAllUsers(){
-        String sql = "SELECT * FROM users";
+        String sql = "SELECT * FROM users ORDER BY name ASC";
         try(Connection conn = sql2o.open()){
             return conn.createQuery(sql).executeAndFetch(Users.class);
         }

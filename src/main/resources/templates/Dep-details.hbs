@@ -13,7 +13,9 @@
                     </div>
                     <div class="col-lg-6 the-details">
                         <p class="text-center"><em>Providing solutions for Africa and beyond</em></p>
-                        <p class="text-center"><i class="fas fa-users"></i> Users : 23</p><br>
+                        {{#if number}}
+                        <p class="text-center"><i class="fas fa-users"></i> Users : {{number}}</p><br>
+                        {{/if}}
                         <div class="users-deps text-center">
                             <a href="/Departments/{{department-data}}/users"><button class="btn btn-outline-light">Users</button></a>
                             <a href="/Departments/{{department-data}}/DepNews"><button class="btn btn-outline-deep-orange">Department News</button></a>

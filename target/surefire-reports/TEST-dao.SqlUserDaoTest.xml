@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="4" failures="0" name="dao.SqlUserDaoTest" time="0.174" errors="0" skipped="0">
+<testsuite tests="4" failures="0" name="dao.SqlUserDaoTest" time="0.137" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="java.vm.version" value="11.0.3+7-LTS"/>
@@ -62,8 +62,8 @@
     <property name="sun.desktop" value="gnome"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="dao.SqlUserDaoTest" name="getsAUserById" time="0.028"/>
-  <testcase classname="dao.SqlUserDaoTest" name="addsUserAndSetsId" time="0.024"/>
-  <testcase classname="dao.SqlUserDaoTest" name="getsAllUsersAdded" time="0.031"/>
-  <testcase classname="dao.SqlUserDaoTest" name="retrievesCorrectDepartmentsForAUser" time="0.091"/>
+  <testcase classname="dao.SqlUserDaoTest" name="getsAUserById" time="0.02"/>
+  <testcase classname="dao.SqlUserDaoTest" name="addsUserAndSetsId" time="0.016"/>
+  <testcase classname="dao.SqlUserDaoTest" name="getsAllUsersAdded" time="0.032"/>
+  <testcase classname="dao.SqlUserDaoTest" name="retrievesCorrectDepartmentsForAUser" time="0.069"/>
 </testsuite>

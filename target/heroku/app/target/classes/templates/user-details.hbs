@@ -1,0 +1,71 @@
+{{#partial "content"}}
+    <div class="user-details-full">
+        <a href="/Users"><i class="fas fa-arrow-left"></i></a>
+        <div class="container-fluid">
+            <div class="row">
+                {{#if userDetails}}
+                    <div class="col-lg-6">
+                        <div class="img-user-details">
+                            <img id="currentPhoto" class="the-user" alt="User Image" src="{{url}}" onerror="this.onerror=null; this.src='https://avatars2.githubusercontent.com/u/3449975?s=180&v=4'" width="150px" height="300px">
+                        </div>
+                    </div>
+                {{/if}}
+                    <div class="col-lg-6 the-details">
+                        {{#if userDetails}}
+                        <h1 class="the-user-detail text-center">{{userDetails.name}}</h1>
+                        <hr id="user-name"><br>
+                        <p class="text-center">Positions : {{userDetails.position}}</p><br>
+                        {{/if}}
+                        <div class="users-deps">
+                            <h4 class="text-center">Departments</h4>
+                            <hr id="user-name">
+                            {{#if userDeps}}
+                            {{#each userDeps}}
+                                <p class="text-center">{{name}}</p>
+                            {{/each}}
+                                {{else}}
+                                <p class="text-center">No departments available</p>
+                            {{/if}}
+                            <i class="fas fa-plus for-user" data-toggle="modal" data-target="#basicExampleModal"> Add To Department</i>
+                            <div class="modal fade right" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                {{#if userDetails}}
+                                <div class="modal-dialog modal-side modal-top-right" role="document">
+                                    <form action="/Users/{{theId}}/departments/new" method="post">
+                                        <div class="modal-dialog cascading-modal" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header primary-color white-text">
+                                                    <h4 class="title">
+                                                        <i class="fas fa-user-plus"></i> Add employee to department</h4>
+                                                </div>
+
+                                                <div class="modal-body">
+
+                                                    <!-- Material input name -->
+                                                    <div class="md-form form-sm">
+                                                        <i class="fas fa-building"> Department Name</i>
+                                                        <select class="form-control" name="departmentId">
+                                                            {{#each allDeps}}
+                                                                <option value="{{id}}">{{name}}</option>
+                                                            {{/each}}
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="text-center mt-4 mb-2">
+                                                        <button class="btn btn-primary" type="submit">Add
+                                                        </button>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                {{/if}}
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+{{/partial}}
+{{> layout.hbs}}

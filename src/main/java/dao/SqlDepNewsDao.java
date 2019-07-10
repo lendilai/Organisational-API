@@ -54,7 +54,7 @@ public class SqlDepNewsDao implements DepNewsDao {
 
     @Override
     public List<DepNews> getAllDepNews(int departmentId){
-        String sql = "SELECT * FROM news WHERE departmentId =:departmentId";
+        String sql = "SELECT * FROM news WHERE departmentId =:departmentId ORDER BY id DESC";
         try(Connection conn = sql2o.open()){
             return conn.createQuery(sql).addParameter("departmentId", departmentId)
                     .throwOnMappingFailure(false)

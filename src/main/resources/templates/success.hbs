@@ -2,7 +2,11 @@
     <div class="whole-page text-center">
         <div class="success-page">
             <i class="fas fa-info"></i><br>
-            <p class="success">The data has been recorded</p><br>
+            {{#if full}}
+                {{full}}
+                {{else}}
+                <p class="success">The data has been recorded</p><br>
+            {{/if}}
             <a href="/"><button class="btn btn-outline-light">Home</button></a>
         </div>
     </div>

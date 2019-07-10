@@ -1,0 +1,30 @@
+{{#partial "content"}}
+    <div class="user-details-full">
+        <a href="/Departments"><i class="fas fa-arrow-left"></i></a>
+            <div class="container-fluid">
+
+                <div class="row">
+
+                    <div class="col-lg-6">
+                        <div class="department-details">
+                            <h1 class="the-user-detail text-center">Tech Department</h1>
+                            <hr id="user-name"><br>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 the-details">
+                        <p class="text-center"><em>Providing solutions for Africa and beyond</em></p>
+                        {{#if number}}
+                        <p class="text-center"><i class="fas fa-users"></i> Users : {{number}}</p><br>
+                        {{/if}}
+                        <div class="users-deps text-center">
+                            <a href="/Departments/{{department-data}}/users"><button class="btn btn-outline-light">Users</button></a>
+                            <a href="/Departments/{{department-data}}/DepNews"><button class="btn btn-outline-deep-orange">Department News</button></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+    </div>
+{{/partial}}
+{{> layout.hbs}}

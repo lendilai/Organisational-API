@@ -10,7 +10,7 @@ This is an api that primarily offers access to news to a department and general 
 * Add a user to a department.
 
 
-## Behaviour Driven Development(BDD)
+## Behaviour Driven Development(BDD) using json
 | Project should handle : | Input example :     | Output example : |
 | :------------- | :------------- | :-------------         |
 | Adding news       | Enter data in json form for the news       | News is added to the news table    |
@@ -54,8 +54,6 @@ $ psql //Launches Postgres
 ## Technologies used
 - [Java](https://www.java.com/) - To make sure the method behind the functionality work ad planned and that the the api can be successfully used.
 
-## Future Releases
-The future release will include the user interface for the application. So stay tuned.
 
 ## Known bugs
 As of now there are no known bugs. If you come across any bugs feel free to contact me.
