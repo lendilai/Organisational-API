@@ -259,6 +259,7 @@ table td, table th {
 .for-user{
 background-color:steelblue;
 }
+
 @media only screen and (max-width : 800px) {
   .top-content {
     margin: auto;

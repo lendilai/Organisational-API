@@ -46,6 +46,7 @@ public class App {
         userDao = new SqlUserDao(sql2o);
         Gson gson = new Gson();
 
+        //Templates routing
         get("/", (request, response) -> {
             Map<String, Object> user = new HashMap<>();
             user.put("allGenNews", genNewsDao.getAllGenNews());
@@ -100,6 +101,72 @@ public class App {
             userDao.add(newUser);
             return new ModelAndView(user, "success.hbs");
         }, new HandlebarsTemplateEngine());
+
+        //View department details
+        get("/Departments/:id", (request, response) -> {
+            Map<String, Object> user = new HashMap<>();
+            int theId = Integer.parseInt(request.params("id"));
+            Departments found = departmentsDao.findById(theId);
+            user.put("department-data", found);
+            return new ModelAndView(user, "Dep-details.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        //View dep news
+        get("/Departments/:id/DepNews", (request, response) -> {
+            Map<String, Object> user = new HashMap<>();
+            int theId = Integer.parseInt(request.params("id"));
+            Departments found = departmentsDao.findById(theId);
+            user.put("allDepNews", departmentsDao.getAllDepartmentNews(theId));
+            user.put("depInfo", found);
+            return new ModelAndView(user, "Dep-News.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        //post dep news
+        post("/Departments/:id/DepNews/new", (request, response) -> {
+            Map<String, Object> user = new HashMap<>();
+            int theId = Integer.parseInt(request.params("id"));
+            String title = request.queryParams("title");
+            String content = request.queryParams("content");
+            String importance = request.queryParams("importance");
+            DepNews newNews = new DepNews(title, content, importance, theId);
+            depNewsDao.add(newNews);
+            return new ModelAndView(user, "success.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        //View department users
+        get("/Departments/:depId/users", (request, response) -> {
+            Map<String, Object> user = new HashMap<>();
+            int depId = Integer.parseInt(request.params("depId"));
+            user.put("depUsers", departmentsDao.getAllUsersForADepartment(depId));
+            Departments found = departmentsDao.findById(depId);
+            user.put("depId", found);
+            user.put("allUsers", userDao.getAllUsers());
+            return new ModelAndView(user, "Dep-Users.hbs");
+        }, new HandlebarsTemplateEngine());
+
+
+        //add department to user while in departments
+        post("/Departments/:depId/users/new", (request, response) -> {
+            Map<String, Object> user = new HashMap<>();
+            int depId = Integer.parseInt(request.params("depId"));
+            int userId = Integer.parseInt(request.queryParams("userId"));
+            Users foundUser = userDao.findById(userId);
+            Departments foundDep = departmentsDao.findById(depId);
+            departmentsDao.addDepartmentToUser(foundDep, foundUser);
+            return new ModelAndView(user, "success.hbs");
+        }, new HandlebarsTemplateEngine());
+        //view user details
+        //add user to department while in users
+
+
+
+
+
+
+
+
+
+
         //Json routing
 
         //post: Add general news

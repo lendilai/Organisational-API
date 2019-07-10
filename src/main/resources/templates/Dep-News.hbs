@@ -1,0 +1,75 @@
+{{#partial "content"}}
+    <div class="whole-page">
+        <h2 class="text-center deps-title">Department news</h2>
+        <i class="fas fa-plus" data-toggle="modal" data-target="#basicExampleModal"> Add News</i>
+
+
+        {{#if depInfo}}
+                <div class="modal fade right" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-side modal-top-right" role="document">
+                        <div class="modal-dialog cascading-modal" role="document">
+                            <form action="/Departments/{{id}}/depNews/new" method="post">
+                                <div class="modal-content">
+                                    <div class="modal-header danger-color white-text">
+                                        <h4 class="title">
+                                            <i class="far fa-newspaper"></i> News Info</h4>
+                                    </div>
+
+                                    <div class="modal-body">
+
+                                        <div class="md-form form-sm">
+                                            <i class="fas fa-heading"> Title</i>
+                                            <input type="text" name="title" class="form-control form-control-sm" required>
+                                        </div>
+
+                                        <div class="md-form form-sm">
+                                            <i class="far fa-newspaper"> <strong> Content</strong></i>
+                                            <textarea type="text" name="content" class="md-textarea form-control" required></textarea>
+                                        </div>
+
+                                        <div class="md-form form-sm">
+                                            <i class="fas fa-star"> Importance</i>
+                                            <input type="text" name="importance" class="form-control form-control-sm" required>
+                                        </div>
+
+                                        <div class="text-center mt-4 mb-2">
+                                            <button class="btn btn-outline-danger" type="submit">Send
+                                            </button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+    {{/if}}
+
+
+    <div class="news">
+    <div class="container-fluid">
+    <div class="row">
+    {{#if allGenNews}}
+        {{#each allGenNews}}
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-body body-1">
+                        </div>
+                        <h3 class="card-title text-center">{{title}}</h3>
+                        <div class="card-body body-2">
+                            <p class="card-text">{{content}}<br>{{importance}}</p>
+                        </div>
+                    </div>
+                </div>
+        {{/each}}
+    {{else}}
+        <p>Lighten up the place by adding some news</p>
+    {{/if}}
+
+
+    </div>
+    </div>
+    </div>
+    </div>
+{{/partial}}
+{{> layout.hbs}}
