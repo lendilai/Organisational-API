@@ -5,7 +5,7 @@
         <i class="fas fa-plus for-user" data-toggle="modal" data-target="#basicExampleModal"> Add Employee</i>
         <div class="modal fade right" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-side modal-top-right" role="document">
-                <form action="User/new" method="post">
+                <form action="/Users/new" method="post">
                     <div class="modal-dialog cascading-modal" role="document">
 
                         <div class="modal-content">
@@ -17,17 +17,17 @@
                             <div class="modal-body">
                                 <div class="md-form form-sm">
                                     <i class="fas fa-user"> Employee Name</i>
-                                    <input type="text" name="employee" class="form-control form-control-sm" placeholder="e.g. John Doe">
+                                    <input type="text" name="employee" class="form-control form-control-sm" placeholder="e.g. John Doe" required>
                                 </div>
 
                                 <div class="md-form form-sm">
                                     <i class="fas fa-briefcase"> Position</i>
-                                    <input type="text" name="position" class="form-control form-control-sm" placeholder="e.g. CTO">
+                                    <input type="text" name="position" class="form-control form-control-sm" placeholder="e.g. CTO" required>
                                 </div>
 
                                 <div class="md-form form-sm">
                                     <i class="far fa-image"> User-Image-Url</i>
-                                    <input type="text" name="url" class="form-control form-control-sm" placeholder="e.g. https://images.complex.com/complex/images/dababy">
+                                    <input type="text" name="url" class="form-control form-control-sm" required placeholder="e.g. https://images.complex.com/complex/images/dababy">
                                 </div>
 
                                 <div class="text-center mt-4 mb-2">

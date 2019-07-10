@@ -70,13 +70,13 @@ public class App {
 
         get("/Departments", (request, response) -> {
             Map<String, Object> user = new HashMap<>();
-            user.put("allUsers", userDao.getAllUsers());
-            return new ModelAndView(user, "users.hbs");
+            user.put("allDeps", departmentsDao.getAll());
+            return new ModelAndView(user, "departments.hbs");
         }, new HandlebarsTemplateEngine());
 
         post("/Departments/new", (request, response) -> {
             Map<String, Object> user = new HashMap<>();
-            String name = request.queryParams("name");
+            String name = request.queryParams("department");
             String description = request.queryParams("desc");
             int userNo = Integer.parseInt(request.queryParams("number"));
             Departments newDep = new Departments(name, description, userNo);
@@ -85,7 +85,21 @@ public class App {
         }, new HandlebarsTemplateEngine());
 
 
+        get("/Users", (request, response) -> {
+            Map<String, Object> user = new HashMap<>();
+            user.put("allUsers", userDao.getAllUsers());
+            return new ModelAndView(user, "users.hbs");
+        }, new HandlebarsTemplateEngine());
 
+        post("Users/new", (request, response) -> {
+            Map<String, Object> user = new HashMap<>();
+            String employee = request.queryParams("employee");
+            String position = request.queryParams("position");
+            String url = request.queryParams("url");
+            Users newUser = new Users(employee, position, url);
+            userDao.add(newUser);
+            return new ModelAndView(user, "success.hbs");
+        }, new HandlebarsTemplateEngine());
         //Json routing
 
         //post: Add general news
