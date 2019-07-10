@@ -1,0 +1,49 @@
+{{#partial "content"}}
+    <div class="top text-center">
+        <nav>
+            <ul>
+                <li class="logo"><a href="#"><i class="fab fa-simplybuilt"></i></a></li>
+                <li><a href="#">News</a></li>
+                <li><a href="#">Users</a></li>
+                <li><a href="#">Departments</a></li>
+            </ul>
+        </nav>
+        <h2>Welcome to Lego Kenya <br>
+            <small>employees site</small></h2>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="top-content col">
+                    <p class="phrase">For every invention ever made, 1000 others were lost. <br>Don't be afraid to portray your ideas.<br> You never know! <br><small> ~ lendilai</small></p>
+                </div>
+                <div class="col-lg-3 bulb">
+                    <img src="https://www.innovators.org/dev/wp-content/uploads/2017/02/Innovation-Lightbulb-2-610x623.png" alt="Bulb image" class="innovate">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="news">
+        <h3 class="news-header">General News</h3><br>
+        <div class="container-fluid">
+            <div class="row">
+                {{#if allGenNews}}
+                    {{#each}}
+                            <div class="col-lg-4">
+                                <div class="card">
+                                    <div class="card-body body-1">
+                                    </div>
+                                    <h3 class="card-title text-center">{{title}}</h3>
+                                    <div class="card-body body-2">
+                                        <p class="card-text">{{content}}<br>{{importance}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                    {{/each}}
+                {{/if}}
+                {{else}}
+                <p class="text-center">Sorry, there are no news available</p>
+            </div>
+        </div>
+    </div>
+{{/partial}}
+{{> layout.hbs}}

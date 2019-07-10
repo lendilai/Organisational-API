@@ -1,0 +1,69 @@
+{{#partial "content"}}
+    <div class="whole-page">
+        <h2 class="text-center users-hd">Users</h2>
+        <hr>
+        <i class="fas fa-plus for-user" data-toggle="modal" data-target="#basicExampleModal"> Add Employee</i>
+        <div class="modal fade right" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-side modal-top-right" role="document">
+                <form action="User/new" method="post">
+                    <div class="modal-dialog cascading-modal" role="document">
+
+                        <div class="modal-content">
+                            <div class="modal-header primary-color white-text">
+                                <h4 class="title">
+                                    <i class="fas fa-user"></i> Employee Info</h4>
+                            </div>
+
+                            <div class="modal-body">
+                                <div class="md-form form-sm">
+                                    <i class="fas fa-user"> Employee Name</i>
+                                    <input type="text" name="employee" class="form-control form-control-sm" placeholder="e.g. John Doe">
+                                </div>
+
+                                <div class="md-form form-sm">
+                                    <i class="fas fa-briefcase"> Position</i>
+                                    <input type="text" name="position" class="form-control form-control-sm" placeholder="e.g. CTO">
+                                </div>
+
+                                <div class="md-form form-sm">
+                                    <i class="far fa-image"> User-Image-Url</i>
+                                    <input type="text" name="url" class="form-control form-control-sm" placeholder="e.g. https://images.complex.com/complex/images/dababy">
+                                </div>
+
+                                <div class="text-center mt-4 mb-2">
+                                    <button class="btn btn-outline-primary" type="submit">Add
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Position</th>
+                </tr>
+                </thead>
+                <tbody>
+                {{#if allUsers}}
+                {{#each allUsers}}
+                    <a href="#">
+                        <tr class="table-rows">
+                            <th scope="row"><i class="fas fa-user"></i></th>
+                            <td>{{name}}</td>
+                            <td>{{position}}</td>
+                        </tr>
+                    </a>
+                {{/each}}
+                {{/if}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{{/partial}}
+{{> layout.hbs}}
