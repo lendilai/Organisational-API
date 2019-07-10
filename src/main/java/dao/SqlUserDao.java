@@ -43,7 +43,9 @@ public class SqlUserDao implements UserDao {
     public Users findById(int id){
         String sql = "SELECT * FROM users WHERE id = :id";
         try(Connection conn = sql2o.open()){
-            return conn.createQuery(sql).addParameter("id", id).executeAndFetchFirst(Users.class);
+            return conn.createQuery(sql)
+                    .addParameter("id", id)
+                    .executeAndFetchFirst(Users.class);
         }
     }
 

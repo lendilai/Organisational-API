@@ -198,7 +198,7 @@ table td, table th {
 .the-details {
   background-color: rgba(0, 0, 0, 0.6);
   border-radius: 7px;
-  margin-top: 5%;
+  margin-top: 3%;
   padding: 8.3% 0;
   color: white;
 }
@@ -239,7 +239,7 @@ table td, table th {
 }
 
 .department-details {
-  margin-top: 33%;
+  margin-top: 27%;
   font-weight: bold;
   font-family: "Bree Serif";
   font-size: 24px;
@@ -258,6 +258,32 @@ table td, table th {
 }
 .for-user{
 background-color:steelblue;
+}
+
+table td a{
+ color: white !important;
+  font-family: "Bree Serif";
+  font-size: 19px;
+}
+.else{
+    font-family:"Bree Serif";
+}
+.success-page{
+margin:auto;
+font-size:50px;
+}
+.fa-info{
+margin-top:14%;
+}
+.fa-arrow-left {
+  padding: 25px;
+  font-size: 27px;
+  color: white;
+}
+
+.fa-arrow-left:hover {
+  transform: scale(1.3, 1.3);
+  transition: 0.5s ease-in;
 }
 
 @media only screen and (max-width : 800px) {

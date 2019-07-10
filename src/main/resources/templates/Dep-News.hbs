@@ -1,14 +1,14 @@
 {{#partial "content"}}
     <div class="whole-page">
+        <a href="/Departments/{{depInfo}}"><i class="fas fa-arrow-left"></i></a>
         <h2 class="text-center deps-title">Department news</h2>
         <i class="fas fa-plus" data-toggle="modal" data-target="#basicExampleModal"> Add News</i>
-
 
         {{#if depInfo}}
                 <div class="modal fade right" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-side modal-top-right" role="document">
                         <div class="modal-dialog cascading-modal" role="document">
-                            <form action="/Departments/{{id}}/depNews/new" method="post">
+                            <form action="/Departments/{{depInfo}}/DepNews/new" method="post">
                                 <div class="modal-content">
                                     <div class="modal-header danger-color white-text">
                                         <h4 class="title">
@@ -49,8 +49,8 @@
     <div class="news">
     <div class="container-fluid">
     <div class="row">
-    {{#if allGenNews}}
-        {{#each allGenNews}}
+    {{#if allDepNews}}
+        {{#each allDepNews}}
                 <div class="col-lg-4">
                     <div class="card">
                         <div class="card-body body-1">
@@ -63,7 +63,7 @@
                 </div>
         {{/each}}
     {{else}}
-        <p>Lighten up the place by adding some news</p>
+        <p class="else text-center">Lighten up the place by adding some news</p>
     {{/if}}
 
 
